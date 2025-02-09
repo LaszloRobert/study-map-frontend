@@ -1,0 +1,47 @@
+/* Default map styles */
+.map path {
+  fill: #ccc;
+  stroke: #000;
+  stroke-width: 0.5;
+  cursor: pointer;
+}
+
+/* Hover effect for paths */
+.map path:hover {
+  fill: #c0a975;
+}
+
+/* When in game mode, disable the hover effect on paths */
+.game-mode .map path:hover {
+  fill: #ccc;
+  /* or use 'inherit' */
+  cursor: default;
+}
+
+/* Flex center helper */
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Allow clicks to pass through to the underlying map */
+.absolute>svg {
+  pointer-events: none;
+}
+
+/* Enable pointer events only on lock icons */
+.absolute>svg g {
+  pointer-events: auto;
+}
+
+/* Locked counties */
+.locked {
+  fill: #ccc;
+  /* Light gray to indicate locked */
+  cursor: not-allowed;
+  /* Indicate not clickable */
+  opacity: 0.6;
+  /* Slight transparency */
+}
