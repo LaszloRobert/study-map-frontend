@@ -19,7 +19,15 @@ code {
 }
 
 @layer utilities {
-  .dashboard-card {
+  /* .dashboard-card {
     @apply bg-tertiary p-12 rounded-lg
+  } */
+
+  .input-field {
+    @apply w-full p-2 mb-4 bg-background text-text placeholder-gray-400 border border-primary rounded
+  }
+
+  .button {
+    @apply bg-primary hover:bg-accent text-background py-2 px-4 rounded w-full font-semibold
   }
 }

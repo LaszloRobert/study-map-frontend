@@ -75,7 +75,7 @@ const Navbar = () => {
                                 )}
                             </div>
                         ) : (
-                            <button onClick={openModal} className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded cursor-pointer">Logare</button>
+                            <button onClick={openModal} className="bg-primary text-textDark hover:bg-secondary font-bold py-2 px-4 rounded cursor-pointer">Logare</button>
                         )}
                     </div>
                 </div>

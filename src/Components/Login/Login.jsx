@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { loginSuccessful, registerUser } from '../../Service/userApiService';
 import { UserContext } from '../UserContext';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import { FaGoogle } from "react-icons/fa";
+import { useGoogleLogin } from '@react-oauth/google';
+import { toast } from 'react-toastify';
 
 const Login = ({ onClose, isRegistering }) => {
-    const [error, setError] = useState("");
     const navigate = useNavigate(); // Define navigate using useNavigate
     const { setUser } = useContext(UserContext);
 
@@ -20,29 +21,37 @@ const Login = ({ onClose, isRegistering }) => {
             navigate('/dashboard')
         } catch (err) {
             console.error(err);
-            setError("Login failed. Please try again.");
+            toast.error("Login failed. Please try again.");
         }
     }
 
     const handleGoogleLoginError = () => {
-        setError("Google Login failed. Please try again.");
+        toast.error("Google Login failed. Please try again.");
         console.error("Google Login failed.");
     };
 
-
-    var googleCLientID = process.env.REACT_APP_GOOGLE_CLIENT_ID
+    const login = useGoogleLogin({
+        onSuccess: handleGoogleLoginSuccess,
+        onError: handleGoogleLoginError,
+    });
 
     return (
-        <GoogleOAuthProvider clientId="673999193048-ljpk17rf7ps7m1t7qs607clukj1o9f9p.apps.googleusercontent.com">
-            <div className="login-page z-3">
-                <GoogleLogin onSuccess={handleGoogleLoginSuccess} onError={handleGoogleLoginError} />
-                <div className="mt-4">
-                    <h3 className="text-md mb-2 text-black text-center">OR</h3>
-                    {isRegistering ? <RegisterForm onClose={onClose} /> : <LoginForm onClose={onClose} />}
-                </div>
-                {error && <p style={{ color: "red" }}>{error}</p>}
+
+        <div className="z-3">
+            <div className="space-y-4">
+                {isRegistering ? <RegisterForm onClose={onClose} /> : <LoginForm onClose={onClose} />}
             </div>
-        </GoogleOAuthProvider >
+            <div className="text-center mt-6 text-text text-sm">Sau</div>
+            <div className="mt-3 flex justify-center">
+                <button
+                    onClick={() => login()}
+                    className="p-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-background transition"
+                >
+                    <FaGoogle size={20} />
+                </button>
+            </div>
+        </div>
+
     );
 }
 
