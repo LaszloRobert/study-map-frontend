@@ -1,20 +1,19 @@
 /* Default map styles */
 .map path {
-  fill: #ccc;
-  stroke: #000;
+  fill: #23262F; /* surface */
+  stroke: #3B82F6; /* primary */
   stroke-width: 0.5;
   cursor: pointer;
 }
 
 /* Hover effect for paths */
 .map path:hover {
-  fill: #c0a975;
+  fill: #F59E42; /* secondary */
 }
 
 /* When in game mode, disable the hover effect on paths */
 .game-mode .map path:hover {
-  fill: #ccc;
-  /* or use 'inherit' */
+  fill: #23262F;
   cursor: default;
 }
 
@@ -38,10 +37,7 @@
 
 /* Locked counties */
 .locked {
-  fill: #ccc;
-  /* Light gray to indicate locked */
+  fill: #A1A1AA; /* muted */
   cursor: not-allowed;
-  /* Indicate not clickable */
   opacity: 0.6;
-  /* Slight transparency */
 }

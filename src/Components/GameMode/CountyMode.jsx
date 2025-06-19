@@ -241,8 +241,8 @@ const CountyMode = () => {
     };
 
     return (
-        <div className="relative flex flex-col items-center justify-center min-h-screen p-4 pt-[85px]">
-            <div className="absolute top-[20px] left-4 flex items-center bg-gradient-to-r from-yellow-400 to-yellow-500 text-black text-md font-bold py-2 px-4 rounded-lg shadow-md border border-yellow-600">
+        <div className="relative flex flex-col items-center justify-center min-h-screen p-4 pt-[85px] bg-background">
+            <div className="absolute top-[20px] left-4 flex items-center bg-gradient-to-r from-primary to-secondary text-background text-md font-bold py-2 px-4 rounded-lg shadow-md border border-primary">
                 💰 Coins: {coins}
             </div>
 
@@ -250,7 +250,7 @@ const CountyMode = () => {
             {!gameMode && (
                 <button
                     onClick={startGame}
-                    className="bg-primary py-2 px-4 rounded-lg shadow-md absolute top-[20px]"
+                    className="bg-primary py-2 px-4 rounded-lg shadow-md absolute top-[20px] text-text font-semibold hover:bg-accent transition border border-accent"
                 >
                     🎮 Incepe jocul
                 </button>
@@ -258,11 +258,11 @@ const CountyMode = () => {
 
             {/* Game Instructions */}
             {gameMode && currentGameCounty && (
-                <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-300 text-center max-w-xs mx-auto -mt-[80px]">
-                    <p className="text-xl font-semibold text-gray-800">
-                        Alege: <span className="text-blue-600">{currentGameCounty}</span>
+                <div className="bg-surface p-4 rounded-xl shadow-lg border border-primary text-center max-w-xs mx-auto -mt-[80px]">
+                    <p className="text-xl font-semibold text-text">
+                        Alege: <span className="text-primary">{currentGameCounty}</span>
                     </p>
-                    <div className="mt-2 text-red-600 font-medium text-lg flex items-center justify-center gap-1">
+                    <div className="mt-2 text-accent font-medium text-lg flex items-center justify-center gap-1">
                         ⏳ <span>{timer}s</span> remaining
                     </div>
                 </div>

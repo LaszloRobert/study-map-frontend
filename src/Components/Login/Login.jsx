@@ -41,11 +41,11 @@ const Login = ({ onClose, isRegistering }) => {
             <div className="space-y-4">
                 {isRegistering ? <RegisterForm onClose={onClose} /> : <LoginForm onClose={onClose} />}
             </div>
-            <div className="text-center mt-6 text-text text-sm">Sau</div>
+            <div className="text-center mt-6 text-accent text-sm font-semibold">Sau</div>
             <div className="mt-3 flex justify-center">
                 <button
                     onClick={() => login()}
-                    className="p-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-background transition"
+                    className="p-3 border-2 border-accent text-accent rounded-full hover:bg-accent hover:text-background transition shadow-lg"
                 >
                     <FaGoogle size={20} />
                 </button>
