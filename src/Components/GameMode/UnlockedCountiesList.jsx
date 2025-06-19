@@ -1,11 +1,13 @@
 import React from 'react';
 
 const UnlockedCountiesList = ({ unlockedCounties }) => (
-  <div className="mt-8 w-full max-w-3xl">
-    <h2 className="text-xl font-bold mb-4">Unlocked Counties</h2>
-    <div className="grid grid-cols-3 gap-4">
+  <div className="mt-8 w-full max-w-3xl px-2">
+    <h2 className="text-2xl font-extrabold mb-2 text-primary flex items-center gap-2">
+      <span className="border-l-4 border-primary pl-2">Județe deblocate</span>
+    </h2>
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
       {unlockedCounties.map((county) => (
-        <div key={county} className="p-2 bg-gray-100 rounded text-center">
+        <div key={county} className="p-3 bg-white rounded-lg shadow text-center text-base font-semibold border border-gray-200 text-gray-800">
           {county}
         </div>
       ))}

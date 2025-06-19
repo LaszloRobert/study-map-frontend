@@ -135,12 +135,12 @@ const CountyMode = () => {
     };
 
     return (
-        <div className="relative flex flex-col items-center justify-center min-h-screen p-4 pt-[85px] bg-background">
+        <div className="relative flex flex-col items-center justify-center min-h-screen p-2 pt-[85px] bg-background max-w-full">
             <CoinDisplay coins={coins} />
             {!gameMode && (
                 <button
                     onClick={startGame}
-                    className="bg-primary py-2 px-4 rounded-lg shadow-md absolute top-[20px] text-text font-semibold hover:bg-accent transition border border-accent"
+                    className="bg-primary py-2 px-4 rounded-lg shadow-md absolute top-[20px] left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 text-text font-semibold hover:bg-accent transition border border-accent text-sm sm:text-base"
                 >
                     🎮 Incepe jocul
                 </button>
@@ -148,35 +148,37 @@ const CountyMode = () => {
             {gameMode && (
                 <button
                     onClick={() => setGameMode(false)}
-                    className="bg-red-500 py-1 px-2 rounded-md shadow-md absolute top-[20px] right-4 text-white text-sm font-semibold hover:bg-red-600 transition border border-red-700"
+                    className="bg-red-500 py-1 px-2 rounded-md shadow-md absolute top-[20px] right-4 text-white text-xs sm:text-sm font-semibold hover:bg-red-600 transition border border-red-700"
                 >
                     ⏹️ Stop joc
                 </button>
             )}
-            <GamePanel
-                gameMode={gameMode}
-                currentGameCounty={currentGameCounty}
-                timer={timer}
-            />
-            <CountyMap
-                unlockedCounties={unlockedCounties}
-                lockPositions={lockPositions}
-                onCountyClick={handleClick}
-                onCountyHover={handleMouseEnter}
-                onCountyLeave={handleMouseLeave}
-                svgRef={svgRef}
-                gameMode={gameMode}
-                countyColors={countyColors}
-                highlightedCounty={highlightedCounty}
-                gamePool={gamePool}
-                countyPrice={countyPrice}
-            />
-            <Tooltip
-                hoveredCounty={hoveredCounty}
-                countyPrice={countyPrice}
-                dialogPosition={dialogPosition}
-            />
-            <UnlockedCountiesList unlockedCounties={unlockedCounties} />
+            <div className="w-full flex flex-col items-center gap-4">
+                <GamePanel
+                    gameMode={gameMode}
+                    currentGameCounty={currentGameCounty}
+                    timer={timer}
+                />
+                <CountyMap
+                    unlockedCounties={unlockedCounties}
+                    lockPositions={lockPositions}
+                    onCountyClick={handleClick}
+                    onCountyHover={handleMouseEnter}
+                    onCountyLeave={handleMouseLeave}
+                    svgRef={svgRef}
+                    gameMode={gameMode}
+                    countyColors={countyColors}
+                    highlightedCounty={highlightedCounty}
+                    gamePool={gamePool}
+                    countyPrice={countyPrice}
+                />
+                <Tooltip
+                    hoveredCounty={hoveredCounty}
+                    countyPrice={countyPrice}
+                    dialogPosition={dialogPosition}
+                />
+                <UnlockedCountiesList unlockedCounties={unlockedCounties} />
+            </div>
         </div>
     );
 };

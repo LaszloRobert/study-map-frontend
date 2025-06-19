@@ -15,7 +15,7 @@ const CountyMap = ({
   countyPrice,
 }) => {
   return (
-    <div className={`relative w-full max-w-3xl ${gameMode ? 'game-mode' : ''}`}>
+    <div className={`relative w-full max-w-3xl px-1 ${gameMode ? 'game-mode' : ''}`}>
       <RomaniaMap
         ref={svgRef}
         onClick={onCountyClick}
@@ -27,7 +27,7 @@ const CountyMap = ({
       {!gameMode && (
         <svg
           viewBox="0 0 613 433"
-          className="absolute top-0 left-0 w-full h-full"
+          className="absolute top-0 left-0 w-full h-full pointer-events-none"
         >
           {lockPositions.map((pos, index) => (
             <g
