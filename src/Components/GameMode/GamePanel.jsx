@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GamePanel = ({ gameMode, currentGameCounty, timer, feedback }) => {
+const GamePanel = ({ gameMode, currentGameCounty, timer }) => {
   return (
     <>
       {gameMode && currentGameCounty && (
@@ -11,11 +11,6 @@ const GamePanel = ({ gameMode, currentGameCounty, timer, feedback }) => {
           <div className="mt-2 text-accent font-medium text-lg flex items-center justify-center gap-1">
             ⏳ <span>{timer}s</span> remaining
           </div>
-        </div>
-      )}
-      {feedback && (
-        <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg">
-          {feedback}
         </div>
       )}
     </>

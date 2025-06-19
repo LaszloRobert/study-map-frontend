@@ -35,7 +35,6 @@ const CountyMode = () => {
         timer,
         countyColors,
         highlightedCounty,
-        feedback,
         startGame,
         endRound,
         setGameMode
@@ -146,11 +145,18 @@ const CountyMode = () => {
                     🎮 Incepe jocul
                 </button>
             )}
+            {gameMode && (
+                <button
+                    onClick={() => setGameMode(false)}
+                    className="bg-red-500 py-1 px-2 rounded-md shadow-md absolute top-[20px] right-4 text-white text-sm font-semibold hover:bg-red-600 transition border border-red-700"
+                >
+                    ⏹️ Stop joc
+                </button>
+            )}
             <GamePanel
                 gameMode={gameMode}
                 currentGameCounty={currentGameCounty}
                 timer={timer}
-                feedback={feedback}
             />
             <CountyMap
                 unlockedCounties={unlockedCounties}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getRandomColor } from '../utils/colorUtils';
+import { toast } from 'react-toastify';
 
-const countyPrice = 10;
+
 const gameTime = 10;
 
 export function useCountyGame(unlockedCounties, setCoins) {
@@ -11,7 +12,6 @@ export function useCountyGame(unlockedCounties, setCoins) {
   const [timer, setTimer] = useState(gameTime);
   const [countyColors, setCountyColors] = useState({});
   const [highlightedCounty, setHighlightedCounty] = useState(null);
-  const [feedback, setFeedback] = useState('');
 
   useEffect(() => {
     if (gameMode && timer > 0) {
@@ -25,7 +25,7 @@ export function useCountyGame(unlockedCounties, setCoins) {
 
   const startGame = () => {
     if (!unlockedCounties || unlockedCounties.length === 0) {
-      setFeedback('Nu este deblocat niciun judet!');
+      toast.warning('Nu este deblocat niciun județ!');
       return;
     }
     const pool = [...unlockedCounties];
@@ -41,7 +41,7 @@ export function useCountyGame(unlockedCounties, setCoins) {
 
   const setNextCounty = (currentPool) => {
     if (!currentPool || currentPool.length === 0) {
-      setFeedback('Game Over! All counties completed.');
+      toast.success('Joc terminat! Ai completat toate județele.');
       setGameMode(false);
       setCurrentGameCounty(null);
       setGamePool(null);
@@ -54,7 +54,6 @@ export function useCountyGame(unlockedCounties, setCoins) {
 
   const endRound = (correct) => {
     if (correct) {
-      setFeedback('✅ Correct! You earned 10 coins.');
       setCoins((c) => c + 10);
       setGamePool((prevPool) => {
         const newPool = prevPool.filter((county) => county !== currentGameCounty);
@@ -66,10 +65,8 @@ export function useCountyGame(unlockedCounties, setCoins) {
       setTimeout(() => {
         setHighlightedCounty(null);
       }, 2000);
-      setFeedback('❌ Wrong county!');
       setNextCounty(gamePool);
     }
-    setTimeout(() => setFeedback(''), 500);
   };
 
   return {
@@ -79,7 +76,6 @@ export function useCountyGame(unlockedCounties, setCoins) {
     timer,
     countyColors,
     highlightedCounty,
-    feedback,
     startGame,
     endRound,
     setGameMode,
@@ -88,6 +84,5 @@ export function useCountyGame(unlockedCounties, setCoins) {
     setCurrentGameCounty,
     setTimer,
     setCountyColors,
-    setFeedback,
   };
 } 

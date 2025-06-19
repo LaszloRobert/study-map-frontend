@@ -24,39 +24,42 @@ const CountyMap = ({
         className="w-full h-auto map"
       />
       {/* Render lock icons for counties not yet unlocked (outside game mode) */}
-      <svg
-        viewBox="0 0 613 433"
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-      >
-        {lockPositions.map((pos, index) => (
-          <g
-            key={index}
-            transform={`translate(${pos.x},${pos.y})`}
-            className="cursor-pointer"
-            onClick={() => onCountyClick({ target: { getAttribute: () => pos.name } })}
-          >
-            <text
-              x="0"
-              y="5"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize="20"
-              fill="#333"
+      {!gameMode && (
+        <svg
+          viewBox="0 0 613 433"
+          className="absolute top-0 left-0 w-full h-full"
+        >
+          {lockPositions.map((pos, index) => (
+            <g
+              key={index}
+              transform={`translate(${pos.x},${pos.y})`}
+              className="cursor-pointer"
+              onClick={() => onCountyClick({ target: { getAttribute: () => pos.name } })}
             >
-              🔒
-            </text>
-            <text
-              x="0"
-              y="25"
-              textAnchor="middle"
-              fontSize="12"
-              fill="#333"
-            >
-              {countyPrice}
-            </text>
-          </g>
-        ))}
-      </svg>
+              <text
+                x="0"
+                y="5"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize="20"
+                fill="#333"
+              >
+                🔒
+              </text>
+              <text
+                x="0"
+                y="28"
+                textAnchor="middle"
+                fontSize="15"
+                fontWeight="bold"
+                fill="#333"
+              >
+                {countyPrice}
+              </text>
+            </g>
+          ))}
+        </svg>
+      )}
     </div>
   );
 };
