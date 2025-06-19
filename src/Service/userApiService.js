@@ -29,3 +29,13 @@ export const loginLocal = async (loginModel) => {
         throw error
     }
 }
+
+export const getUserById = async (userId) => {
+    try {
+        const response = await api.get('/user/getUserById', { params: { userId } });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching user by id:', error);
+        throw error;
+    }
+}

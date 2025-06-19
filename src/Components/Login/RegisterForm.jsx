@@ -16,13 +16,13 @@ const RegisterForm = ({ onClose }) => {
         e.preventDefault();
         try {
             const res = await registerUser({ name, password, email });
-            toast.success("Cont creat cu succes");
+            toast.success("Cont creat cu succes!");
             setUser(res);
             navigate('/map');
             onClose();
         } catch (err) {
             console.error(err);
-            setError("Registration failed. Please try again.");
+            setError("Înregistrarea a eșuat. Încearcă din nou.");
         }
     };
 
@@ -37,6 +37,8 @@ const RegisterForm = ({ onClose }) => {
                         placeholder="Nume"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        autoComplete="username"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -47,6 +49,8 @@ const RegisterForm = ({ onClose }) => {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        autoComplete="email"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -54,14 +58,16 @@ const RegisterForm = ({ onClose }) => {
                         className="input-field"
                         id="password"
                         type="password"
-                        placeholder="Parola"
+                        placeholder="Parolă"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="new-password"
+                        required
                     />
                 </div>
                 <div className="flex items-center justify-between">
                     <button className="button" type="submit">
-                        Inregistrare
+                        Înregistrare
                     </button>
                 </div>
             </form>

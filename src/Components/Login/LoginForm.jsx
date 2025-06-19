@@ -14,13 +14,12 @@ const LoginForm = ({ onClose }) => {
         e.preventDefault();
         try {
             const res = await loginLocal({ email, password });
-            console.log(res);
             setUser(res);
             navigate('/map');
             onClose();
         } catch (err) {
             console.error(err);
-            toast.error("Login failed. Please try again.");
+            toast.error("Autentificarea a eșuat. Verifică datele și încearcă din nou.");
         }
     };
 
@@ -35,6 +34,8 @@ const LoginForm = ({ onClose }) => {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        autoComplete="email"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -42,14 +43,16 @@ const LoginForm = ({ onClose }) => {
                         className="input-field"
                         id="password"
                         type="password"
-                        placeholder="Parola"
+                        placeholder="Parolă"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="current-password"
+                        required
                     />
                 </div>
                 <div className="flex items-center justify-between">
                     <button className="button" type="submit">
-                        Login
+                        Autentificare
                     </button>
                 </div>
             </form>

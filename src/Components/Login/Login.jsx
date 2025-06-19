@@ -4,54 +4,49 @@ import { loginSuccessful, registerUser } from '../../Service/userApiService';
 import { UserContext } from '../UserContext';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import { FaGoogle } from "react-icons/fa";
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 import { toast } from 'react-toastify';
 
 const Login = ({ onClose, isRegistering }) => {
-    const navigate = useNavigate(); // Define navigate using useNavigate
+    const navigate = useNavigate();
     const { setUser } = useContext(UserContext);
 
-    const handleGoogleLoginSuccess = async (response) => {
+    // Google One Tap login success handler
+    const handleGoogleLoginSuccess = async (credentialResponse) => {
         try {
-            const token = response.credential;
+            const token = credentialResponse.credential;
             const res = await loginSuccessful(token);
-            console.log(res);
             setUser(res);
-            navigate('/dashboard')
+            navigate('/dashboard');
+            if (onClose) onClose();
         } catch (err) {
             console.error(err);
-            toast.error("Login failed. Please try again.");
+            toast.error("Autentificarea cu Google a eșuat. Încearcă din nou.");
         }
-    }
+    };
 
+    // Google One Tap login error handler
     const handleGoogleLoginError = () => {
-        toast.error("Google Login failed. Please try again.");
+        toast.error("Autentificarea cu Google a eșuat. Încearcă din nou.");
         console.error("Google Login failed.");
     };
 
-    const login = useGoogleLogin({
-        onSuccess: handleGoogleLoginSuccess,
-        onError: handleGoogleLoginError,
-    });
-
     return (
-
         <div className="z-3">
             <div className="space-y-4">
                 {isRegistering ? <RegisterForm onClose={onClose} /> : <LoginForm onClose={onClose} />}
             </div>
-            <div className="text-center mt-6 text-accent text-sm font-semibold">Sau</div>
+            <div className="text-center mt-6 text-accent text-sm font-semibold">sau</div>
             <div className="mt-3 flex justify-center">
-                <button
-                    onClick={() => login()}
-                    className="p-3 border-2 border-accent text-accent rounded-full hover:bg-accent hover:text-background transition shadow-lg"
-                >
-                    <FaGoogle size={20} />
-                </button>
+                <GoogleLogin
+                    onSuccess={handleGoogleLoginSuccess}
+                    onError={handleGoogleLoginError}
+                    theme="filled_black"
+                    size="large"
+                    width="100%"
+                />
             </div>
         </div>
-
     );
 }
 
