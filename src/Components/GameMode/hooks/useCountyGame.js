@@ -54,7 +54,6 @@ export function useCountyGame(unlockedCounties, setCoins, userId, coins, setUser
 
   const setNextCounty = (currentPool) => {
     if (!currentPool || currentPool.length === 0) {
-      toast.success('Joc terminat! Ai completat toate județele.');
       setGameMode(false);
       setCurrentGameCounty(null);
       setGamePool(null);
@@ -68,7 +67,6 @@ export function useCountyGame(unlockedCounties, setCoins, userId, coins, setUser
 
   const endRound = (correct) => {
     if (correct) {
-      toast.success('✅ Corect! Ai câștigat 10 monede.');
       setCoins((c) => c + 10);
       setGamePool((prevPool) => {
         const newPool = prevPool.filter((county) => county !== currentGameCounty);

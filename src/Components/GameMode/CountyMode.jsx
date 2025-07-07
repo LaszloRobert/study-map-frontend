@@ -10,8 +10,6 @@ import UnlockedCountiesList from './UnlockedCountiesList';
 import CoinDisplay from './CoinDisplay';
 import Tooltip from './Tooltip';
 
-const countyPrice = 10;
-
 const CountyMode = () => {
     const { user, setUser } = useContext(UserContext);
     const [coins, setCoins] = useState(user?.coins ?? 0);
@@ -26,6 +24,9 @@ const CountyMode = () => {
         setUnlockedCounties,
         refreshUnlocked
     } = useUnlockedCounties(user.userId);
+
+    // Dynamic unlock price
+    const countyPrice = 10 + 5 * unlockedCounties.length;
 
     // Game logic hook
     const {
@@ -127,7 +128,6 @@ const CountyMode = () => {
             setCoins((c) => c - countyPrice);
             setUnlockedCounties([...unlockedCounties, county]);
             setHoveredCounty('');
-            toast.success(`Unlocked ${county}!`);
             await unlockCountyForUser(user.userId, county, coins - countyPrice);
             refreshUnlocked();
         } else {
@@ -136,25 +136,27 @@ const CountyMode = () => {
     };
 
     return (
-        <div className="relative flex flex-col items-center justify-center min-h-screen p-2 pt-[85px] bg-background max-w-full">
+        <div className="relative flex flex-col items-center min-h-screen p-2 pt-24 bg-background max-w-full">
             <CoinDisplay coins={coins} />
             {!gameMode && (
                 <button
                     onClick={startGame}
-                    className="bg-primary py-2 px-4 rounded-lg shadow-md absolute top-[20px] left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 text-text font-semibold hover:bg-accent transition border border-accent text-sm sm:text-base"
+                    className="bg-primary py-2 px-4 rounded-lg shadow-md mt-2 mb-2 text-text font-semibold hover:bg-accent transition border border-accent text-sm sm:text-base
+                        w-full max-w-xs sm:absolute sm:top-[20px] sm:left-4 sm:translate-x-0 sm:w-auto sm:mb-0 sm:mt-0"
                 >
-                    🎮 Incepe jocul
+                    🎮 Începe jocul
                 </button>
             )}
             {gameMode && (
                 <button
                     onClick={stopGame}
-                    className="bg-red-500 py-1 px-2 rounded-md shadow-md absolute top-[20px] right-4 text-white text-xs sm:text-sm font-semibold hover:bg-red-600 transition border border-red-700"
+                    className="bg-red-500 py-1 px-2 rounded-md shadow-md mt-2 mb-2 text-white text-xs sm:text-sm font-semibold hover:bg-red-600 transition border border-red-700
+                        w-full max-w-xs sm:absolute sm:top-[20px] sm:right-4 sm:w-auto sm:mb-0 sm:mt-0"
                 >
                     ⏹️ Stop joc
                 </button>
             )}
-            <div className="w-full flex flex-col items-center gap-4">
+            <div className="w-full flex flex-col items-center gap-2">
                 <GamePanel
                     gameMode={gameMode}
                     currentGameCounty={currentGameCounty}
