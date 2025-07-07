@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { getRandomColor } from '../utils/colorUtils';
 import { toast } from 'react-toastify';
+import { saveUserCoins } from '../../../Service/countyApiService';
 
-
+const countyPrice = 10;
 const gameTime = 10;
 
-export function useCountyGame(unlockedCounties, setCoins) {
+export function useCountyGame(unlockedCounties, setCoins, userId, coins, setUser, user) {
   const [gameMode, setGameMode] = useState(false);
   const [gamePool, setGamePool] = useState(null);
   const [currentGameCounty, setCurrentGameCounty] = useState(null);
@@ -22,6 +23,18 @@ export function useCountyGame(unlockedCounties, setCoins) {
     }
     // eslint-disable-next-line
   }, [timer, gameMode]);
+
+  const saveCoinsToBackend = async (finalCoins) => {
+    if (!userId) return;
+    try {
+      await saveUserCoins(userId, finalCoins);
+      if (setUser && user) {
+        setUser({ ...user, coins: finalCoins });
+      }
+    } catch (e) {
+      toast.error('Eroare la salvarea monedelor!');
+    }
+  };
 
   const startGame = () => {
     if (!unlockedCounties || unlockedCounties.length === 0) {
@@ -45,6 +58,7 @@ export function useCountyGame(unlockedCounties, setCoins) {
       setGameMode(false);
       setCurrentGameCounty(null);
       setGamePool(null);
+      saveCoinsToBackend(coins);
       return;
     }
     const randomCounty = currentPool[Math.floor(Math.random() * currentPool.length)];
@@ -54,6 +68,7 @@ export function useCountyGame(unlockedCounties, setCoins) {
 
   const endRound = (correct) => {
     if (correct) {
+      toast.success('✅ Corect! Ai câștigat 10 monede.');
       setCoins((c) => c + 10);
       setGamePool((prevPool) => {
         const newPool = prevPool.filter((county) => county !== currentGameCounty);
@@ -65,8 +80,17 @@ export function useCountyGame(unlockedCounties, setCoins) {
       setTimeout(() => {
         setHighlightedCounty(null);
       }, 2000);
+      toast.error('❌ Greșit!');
       setNextCounty(gamePool);
     }
+  };
+
+  // Call this to stop the game and save coins
+  const stopGame = () => {
+    setGameMode(false);
+    setCurrentGameCounty(null);
+    setGamePool(null);
+    saveCoinsToBackend(coins);
   };
 
   return {
@@ -84,5 +108,6 @@ export function useCountyGame(unlockedCounties, setCoins) {
     setCurrentGameCounty,
     setTimer,
     setCountyColors,
+    stopGame,
   };
 } 

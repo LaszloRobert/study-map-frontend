@@ -27,3 +27,16 @@ export const unlockCountyForUser = async (userId, county, remainedCoins) => {
         throw error;
     }
 };
+
+export const saveUserCoins = async (userId, coins) => {
+    try {
+        const response = await api.post(`/county/saveUserCoins`, {
+            userId,
+            coins
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error saving user coins:', error);
+        throw error;
+    }
+};

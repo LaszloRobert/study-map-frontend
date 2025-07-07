@@ -13,7 +13,7 @@ import Tooltip from './Tooltip';
 const countyPrice = 10;
 
 const CountyMode = () => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [coins, setCoins] = useState(user?.coins ?? 0);
     const [hoveredCounty, setHoveredCounty] = useState('');
     const [dialogPosition, setDialogPosition] = useState({ x: 0, y: 0 });
@@ -37,8 +37,9 @@ const CountyMode = () => {
         highlightedCounty,
         startGame,
         endRound,
-        setGameMode
-    } = useCountyGame(unlockedCounties, setCoins);
+        setGameMode,
+        stopGame
+    } = useCountyGame(unlockedCounties, setCoins, user.userId, coins, setUser, user);
 
     // Calculate lock positions and update SVG fills
     useEffect(() => {
@@ -147,7 +148,7 @@ const CountyMode = () => {
             )}
             {gameMode && (
                 <button
-                    onClick={() => setGameMode(false)}
+                    onClick={stopGame}
                     className="bg-red-500 py-1 px-2 rounded-md shadow-md absolute top-[20px] right-4 text-white text-xs sm:text-sm font-semibold hover:bg-red-600 transition border border-red-700"
                 >
                     ⏹️ Stop joc
