@@ -3,6 +3,7 @@ import { UserContext } from './UserContext';
 import { Link } from 'react-router-dom';
 import LoginModal from './Login/LoginModal';
 import { Tooltip } from 'react-tooltip';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const { user, logout } = useContext(UserContext);
@@ -103,13 +104,16 @@ const Navbar = () => {
                         <Link
                             to={user ? "/dashboard" : "#"}
                             className={`w-full text-center py-2 ${user ? "text-text" : "text-muted cursor-not-allowed"}`}
-                            data-tooltip-id="dashboard-tooltip-mobile"
-                            data-tooltip-content={!user ? "Logare este necesara pentru mai multe functionalitati" : ""}
-                            onClick={() => setMenuOpen(false)}
+                            onClick={e => {
+                                if (!user) {
+                                    e.preventDefault();
+                                    toast.info("Logare este necesara pentru mai multe functionalitati");
+                                }
+                                setMenuOpen(false);
+                            }}
                         >
                             Dashboard
                         </Link>
-                        <Tooltip id="dashboard-tooltip-mobile" place="bottom" type="dark" effect="solid" />
                         <div className="w-full flex justify-center">
                             {user ? (
                                 <button onClick={handleLogout} className="bg-primary text-text hover:bg-accent font-bold py-2 px-4 rounded w-full transition shadow-md mb-2">Logout</button>

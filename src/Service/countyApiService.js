@@ -5,6 +5,7 @@ export const getUnlockedCounties = async (userId) => {
         const response = await api.get(`/county/getUnlockedCounties`, {
             params: { userId }
         });
+       
         return response.data; // expected to be a list of strings
     } catch (error) {
         console.error('Error fetching unlocked counties:', error);
