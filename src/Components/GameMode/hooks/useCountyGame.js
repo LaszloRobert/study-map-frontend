@@ -78,7 +78,6 @@ export function useCountyGame(unlockedCounties, setCoins, userId, coins, setUser
       setTimeout(() => {
         setHighlightedCounty(null);
       }, 2000);
-      toast.error('❌ Greșit!');
       setNextCounty(gamePool);
     }
   };
