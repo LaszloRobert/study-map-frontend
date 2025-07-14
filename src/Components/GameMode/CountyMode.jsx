@@ -141,6 +141,10 @@ const CountyMode = () => {
             <Helmet>
                 <title>Modul Județe - Roharta</title>
                 <meta name="description" content="Testează-ți cunoștințele despre județele României în Modul Județe pe Roharta." />
+                <link rel="canonical" href="https://www.roharta.ro/county" />
+                <meta property="og:title" content="Modul Județe - Roharta" />
+                <meta property="og:description" content="Testează-ți cunoștințele despre județele României în Modul Județe pe Roharta." />
+                <meta property="og:url" content="https://www.roharta.ro/county" />
             </Helmet>
             <div className="relative flex flex-col items-center min-h-screen p-2 pt-24 bg-background max-w-full">
                 <CoinDisplay coins={coins} />

@@ -47,6 +47,10 @@ const MapComponent = () => {
             <Helmet>
                 <title>Harta României - Roharta</title>
                 <meta name="description" content="Explorează harta interactivă a României pe Roharta. Descoperă județele, învață geografie și multe altele!" />
+                <link rel="canonical" href="https://www.roharta.ro/map" />
+                <meta property="og:title" content="Harta României - Roharta" />
+                <meta property="og:description" content="Explorează harta interactivă a României pe Roharta. Descoperă județele, învață geografie și multe altele!" />
+                <meta property="og:url" content="https://www.roharta.ro/map" />
             </Helmet>
             <div className="flex flex-col items-center mt-2 sm:mt-5 p-2 sm:p-4 min-h-screen bg-gradient-to-b from-background via-surface to-background">
                 <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-text font-bold text-center">Alege: {targetCounty}</h1>

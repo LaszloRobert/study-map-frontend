@@ -7,8 +7,27 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="RoHarta este o aplicatie web care te ajuta sa inveti județele României."
+      content="RoHarta este o aplicatie web care te ajuta sa inveti județele României prin jocuri interactive. Testează-ți cunoștințele de geografie și câștigă monede."
     />
+    <meta name="keywords" content="Romania, judete, geografie, harta, joc educativ, invatare, teste, quiz, RoHarta" />
+    <meta name="author" content="RoHarta" />
+    <link rel="canonical" href="https://www.roharta.ro/" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="RoHarta - Învață Harta României" />
+    <meta property="og:description" content="Aplicație web interactivă pentru învățarea județelor României prin jocuri educative. Testează-ți cunoștințele de geografie!" />
+    <meta property="og:url" content="https://www.roharta.ro/" />
+    <meta property="og:site_name" content="RoHarta" />
+    <meta property="og:image" content="https://www.roharta.ro/favicon.png" />
+    <meta property="og:image:alt" content="RoHarta - Harta României" />
+    <meta property="og:locale" content="ro_RO" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RoHarta - Învață Harta României" />
+    <meta name="twitter:description" content="Aplicație web interactivă pentru învățarea județelor României prin jocuri educative" />
+    <meta name="twitter:image" content="https://www.roharta.ro/favicon.png" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -34,6 +53,40 @@
   gtag('js', new Date());
 
   gtag('config', 'G-7B1GKWJ15W');
+</script>
+
+<!-- Structured Data JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "RoHarta",
+  "description": "Aplicație web interactivă pentru învățarea județelor României prin jocuri educative",
+  "url": "https://www.roharta.ro",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "RON"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "RoHarta"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Geografia României",
+    "description": "Învățarea județelor României"
+  },
+  "educationalUse": "testing",
+  "interactivityType": "active",
+  "learningResourceType": "game",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "student"
+  }
+}
 </script>
   </head>
   <body>
