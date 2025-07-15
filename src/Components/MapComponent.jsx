@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RomaniaMap from '../assets/RomaniaMap';
 import { Helmet } from "react-helmet";
+import { Link } from 'react-router-dom';
 
 const counties = [
     'Alba', 'Arad', 'Argeș', 'Bacău', 'Bihor', 'Bistrița-Năsăud', 'Botoșani', 'Brașov', 'Brăila',
@@ -60,6 +61,11 @@ const MapComponent = () => {
                 <p className="mt-2 sm:mt-4 text-base sm:text-lg text-primary font-semibold text-center">
                     Județ selectat: <span className="text-accent">{selectedCounty || 'Niciun județ selectat'}</span>
                 </p>
+                <div className="mt-4 text-center">
+                    <Link to="/blog" className="text-muted hover:text-primary text-sm transition-colors">
+                        📚 Învață mai multe despre geografia României
+                    </Link>
+                </div>
             </div>
         </>
     );
