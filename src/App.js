@@ -6,6 +6,8 @@ import { UserProvider, UserContext } from './Components/UserContext';
 import Navbar from './Components/Navbar';
 import Dashboard from './Components/Dashboard';
 import CountyMode from './Components/GameMode/CountyMode';
+import Blog from './Components/Blog';
+import BlogPost from './Components/BlogPost';
 import PrivateRoute from "./Components/PrivateRoute";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,9 +18,11 @@ function App() {
     <UserProvider>
       <Router>
         <Navbar />
-        <div class="pt-[85px]"> {/* Add padding to avoid content being hidden behind the navbar */}
+        <div className="pt-[85px]"> {/* Add padding to avoid content being hidden behind the navbar */}
           <Routes>
             <Route path="/map" element={<MapComponent />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
             <Route path="/county" element={<PrivateRoute element={<CountyMode />} />} />
             <Route path="*" element={<Navigate to="/map" />} />

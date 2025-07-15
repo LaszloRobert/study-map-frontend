@@ -60,8 +60,14 @@ const Navbar = () => {
                 <div className="text-lg sm:text-2xl font-bold text-primary">
                     <Link to="/">RoHarta</Link>
                 </div>
-                {/* Right: Dashboard + Avatar/Login (desktop only) */}
+                {/* Right: Navigation + Avatar/Login (desktop only) */}
                 <div className="hidden sm:flex items-center gap-x-4">
+                    <Link
+                        to="/blog"
+                        className="text-text hover:text-primary transition-colors"
+                    >
+                        Blog
+                    </Link>
                     <Link
                         to={user ? "/dashboard" : "#"}
                         className={`${user ? "text-text" : "text-muted cursor-not-allowed"}`}
@@ -101,6 +107,13 @@ const Navbar = () => {
                 {/* Mobile: Dropdown menu */}
                 {menuOpen && (
                     <div ref={menuRef} className="absolute top-full left-0 w-full flex flex-col items-center bg-surface bg-opacity-95 rounded-b-2xl shadow-lg border-x border-b border-primary mt-1 z-50 sm:hidden">
+                        <Link
+                            to="/blog"
+                            className="w-full text-center py-2 text-text hover:text-primary transition-colors"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Blog
+                        </Link>
                         <Link
                             to={user ? "/dashboard" : "#"}
                             className={`w-full text-center py-2 ${user ? "text-text" : "text-muted cursor-not-allowed"}`}
